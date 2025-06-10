@@ -1,0 +1,76 @@
+@color : red;
+@weight : 100px;
+@height : 100px;
+@mySelector  : app;
+
+
+// 选择器变量
+@{mySelector}  { 
+
+    background-color: @color;
+    width: @weight;
+    height: @height;    
+}
+
+.@{mySelector}  { 
+
+    background-color: @color;
+    width: @weight;
+    height: @height;    
+}
+
+#@{mySelector}  { 
+
+    background-color: @color;
+    width: @weight;
+    height: @height;    
+}
+
+// 属性值变量
+@borderColor : border-color;
+.@{mySelector}  { 
+
+    background-color: @color;
+    width: @weight;
+    height: @height;    
+    @{borderColor}: red;
+}
+
+// url变量
+@url : url(http://www.baidu.com);
+.@{mySelector}  { 
+
+    background-color: @color;
+    width: @weight;
+    height: @height;    
+    @{borderColor}: red;
+    background-image: @url;
+}
+
+
+// 声明变量
+@backColor : {background-color: red;}
+
+.@{mySelector}  { 
+    @backColor(); // 加括号
+}
+
+// 变量运算
+
+@myWidth : 100px;
+
+.@{mySelector}  { 
+    width: @myWidth * 2 - 90;
+}
+
+
+// 变量作用域 就近原则
+@var : @a;
+@a : 100%;
+
+.@{mySelector}  { 
+    width: @var; // 50%
+    @a : 50%;
+}
+
+

@@ -1,0 +1,37 @@
+app {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+}
+.app {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+}
+#app {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+}
+.app {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  border-color: red;
+}
+.app {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  border-color: red;
+  background-image: url(http://www.baidu.com);
+}
+.app {
+  background-color: red;
+}
+.app {
+  width: 110px;
+}
+.app {
+  width: 50%;
+}
