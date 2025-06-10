@@ -1,0 +1,28 @@
+// 嵌套
+
+// &
+#app{
+    width: 100%;
+    height: 100%;
+    &#list{ // & 可以省略
+        background: red;
+        li{
+            background: blue;
+        }
+        a{
+            background: yellow;
+        }
+
+    }
+}
+
+// 媒体查询
+#app{
+    width: 100%;
+    height: 100%;
+    @media screen and (min-width: 768px) {
+        background: red;
+    }
+}
+
+

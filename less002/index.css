@@ -1,0 +1,22 @@
+#app {
+  width: 100%;
+  height: 100%;
+}
+#app#list {
+  background: red;
+}
+#app#list li {
+  background: blue;
+}
+#app#list a {
+  background: yellow;
+}
+#app {
+  width: 100%;
+  height: 100%;
+}
+@media screen and (min-width: 768px) {
+  #app {
+    background: red;
+  }
+}
