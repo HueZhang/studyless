@@ -1,0 +1,143 @@
+// 混合方法
+
+// 样式一样可以重用
+
+.com{
+    width: 100px;
+}
+#app{
+    .com; // 样式重用
+}
+
+
+// 无参数方法
+
+// 被调用，不编译
+.func(){
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+
+#app{
+    .func(); 
+}
+
+// 有参数方法
+
+.func2(@width, @height, @color: red){ 
+    width: @width;
+    height: @height;
+    background: @color;
+}
+
+#app2{
+    .func2(100px, 100px); // 调用
+}
+
+// 方法的匹配模式  类似多态
+.overLoadFunc(@width, @height, @color){ 
+    width: @width;
+    height: @height;
+    background: @color;
+}
+
+.overLoadFunc(@width, @height){ 
+    width: @width;
+    height: @height;
+}
+
+#app3{
+    .overLoadFunc(100px, 100px); // 调用
+}
+
+#app4{
+    .overLoadFunc(100px, 100px, red); // 调用
+}
+
+// 方法的命名空间
+
+.namespaceFunc(@width : 100%, @height : 100%){ 
+    width: @width;
+    height: @height;
+    .a(@color: red){
+        #b(@border: 1px solid red){
+            border: @border;
+        }
+    }
+}
+
+#app4{
+    .namespaceFunc(50%, 50%); 
+    .a(yellow); 
+    #b(200px solid red); // 调用
+}
+
+#app5{
+    .namespaceFunc >   .a >  #b(200px solid red); // 调用
+}
+
+
+
+// 方法的条件筛选
+.myFunc{
+    .boder(@width, @color) when (@width > 0) and (@color = red){ // 条件筛选
+        border: @width solid @color;
+    }
+     .boder2(@width, @color) when not (@width > 0) and (@color = red){ // 条件筛选
+        border: @width solid @color;
+    }
+
+    .boder3(@width, @color) when (@width > 0) , (@color = blue){ // 条件筛选
+        border: @width solid @color;
+    }
+
+}
+
+
+#app5{
+    .myFunc > .boder(1px, red); // 调用
+}
+
+
+// 数量不定
+
+.myFunc2(...){ 
+    border: @arguments;
+
+}
+
+#app6{
+    .myFunc2(1px solid red, 2px solid blue); // 调用
+}
+
+
+// !important
+
+
+// 循环 递归
+.myFunc3(10);
+.myFunc3(@x , @i: 1) when (@i <= @x){ // 循环
+    .item-@{i} {
+        width: @i * 10px;
+        height: @i * 10px;
+        background: red;
+    }
+    .myFunc3(@x,@i + 1); // 递归
+}
+
+
+// 属性拼接  + 代表逗号  +_ 代表空格
+.myFc4(){ 
+    box-shadow+:10px 10px 10px red;
+}
+
+#app7{
+    .myFc4(); // 调用
+    .myFc4();
+    box-shadow+: 100px 100px 100px red;
+}
+
+
+
+
